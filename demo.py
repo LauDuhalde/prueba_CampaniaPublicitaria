@@ -17,9 +17,8 @@ def escribir_log (excepcion):
         fecha_hora = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         with open(os.path.abspath('logs/'+archivo), 'a') as log:
             log.write(f"[{fecha_hora}]  ERROR:  {str(excepcion)}\n")
-            log.close()
     except OSError as e:
-        print(f"Error al intentar crear el archivo log: {str(e)}")
+        print(f"Error al intentar crear y/o escribir el archivo log: {str(e)}")
 
 try:
     anuncios_data = [("Video",{"url_archivo": "archivo1", "url_clic": "clic1", "sub_tipo": "instream","duracion":10})]
