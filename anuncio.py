@@ -16,7 +16,6 @@ class Anuncio(ABC):
         self.__url_clic = url_clic
         self.__sub_tipo = sub_tipo
         
-    # Getter y setter para el atributo alto
     @property
     def alto(self):
         return self.__alto
@@ -28,7 +27,6 @@ class Anuncio(ABC):
         else:
             self.__alto = 1
     
-    # Getter y setter para el atributo ancho
     @property
     def ancho(self):
         return self.__ancho
@@ -40,7 +38,6 @@ class Anuncio(ABC):
         else:
             self.__ancho = 1
     
-    # Getter y setter para el atributo url_archivo
     @property
     def url_archivo(self):
         return self.__url_archivo
@@ -49,7 +46,6 @@ class Anuncio(ABC):
     def url_archivo(self, url):
         self.__url_archivo = url
     
-    # Getter y setter para el atributo url_clic
     @property
     def url_clic(self):
         return self.__url_clic
@@ -58,7 +54,6 @@ class Anuncio(ABC):
     def url_clic(self, url):
         self.__url_clic = url
     
-    # Getter y setter para el atributo sub_tipo
     @property
     def sub_tipo(self):
         return self.__sub_tipo
@@ -86,11 +81,11 @@ class Anuncio(ABC):
         print("===============")
         for valor in Video.SUB_TIPOS:
             print(valor)
-        print(Display.FORMATO)
+        print(f"\n{Display.FORMATO}")
         print("===============")
         for valor in Display.SUB_TIPOS:
             print(valor)
-        print(Social.FORMATO)
+        print(f"\n{Social.FORMATO}")
         print("===============")
         for valor in Social.SUB_TIPOS:
             print(valor)

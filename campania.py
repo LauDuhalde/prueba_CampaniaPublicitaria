@@ -1,32 +1,50 @@
 from datetime import date
-from anuncio import Anuncio,Video,Display,Social
+from anuncio import Video,Display,Social
 from error import LargoExcedidoError
 class Campania():
-    def __init__(self, nombre:str, fecha_inicio:date,fecha_termino:date,anuncios:dict) -> None:
+    MAX_CARACTERES=250 #Cantidad máxima de caracteres para el nombre de campaña
+    
+    def __init__(self, nombre:str, fecha_inicio:date,fecha_termino:date,anuncios:list) -> None:
         self.__nombre = nombre
         self.__fecha_inicio = fecha_inicio
         self.__fecha_termino = fecha_termino
         self._anuncios = self._crear_anuncios(anuncios)
-    def _crear_anuncios(self, anuncios: dict):
+        
+    def _crear_anuncios(self, anuncios: list):
+        '''
+        Método privado que permite la creación de una lista de anuncios
+        Parameter
+        -----------
+        anuncios
+            Type:   Lista de tuplas [(formato, datos de anuncio)]
+            Ejemplo:    [
+                            ("Video",{"url_archivo": "archivo1", "url_clic": "clic1", "sub_tipo": "instream","duracion":10}),
+                            ("Social",{"ancho":10, "alto":25,"url_archivo": "archivo1", "url_clic": "clic1", "sub_tipo": "linkedin"})
+                        ]
+            
+        Return
+        -----------
+        anunciosList
+            Type:   Lista de objetos Video, Display y/o Social
+            Descripcion:    Lista de objetos subtipo de Anuncios
+        '''
         anunciosList = []
-        for formato, data in anuncios.items():  
-            print("FORMATO:",formato)
-            if "Video" in formato:
-                anunciosList.append(Video(**data))
-            if "Display" in formato:
-                anunciosList.append(Display(**data))
-            if "Social" in formato:
-                anunciosList.append(Social(**data))
+        for data in anuncios:  
+            if "Video" == data[0]:
+                anunciosList.append(Video(**data[1]))
+            if "Display" == data[0]:
+                anunciosList.append(Display(**data[1]))
+            if "Social" == data[0]:
+                anunciosList.append(Social(**data[1]))
         return anunciosList
                 
-    
     @property
     def nombre(self):
         return self.__nombre
 
     @nombre.setter
     def nombre(self, nuevo_nombre):
-        if len(nuevo_nombre) > 250:
+        if len(nuevo_nombre) > self.MAX_CARACTERES:
             raise LargoExcedidoError("El nuevo nombre supera los 250 caracteres.")
         self.__nombre = nuevo_nombre
         
@@ -69,14 +87,14 @@ class Campania():
     
 if __name__ == "__main__":
     # Ejemplo de uso
-    anuncios_data = {
-        "Video1":{"url_archivo": "archivo1", "url_clic": "clic1", "sub_tipo": "instream","duracion":10},
-        "Social1":{"ancho":10, "alto":25,"url_archivo": "archivo1", "url_clic": "clic1", "sub_tipo": "linkedin"},
-        "Display1":{"ancho":10, "alto":25,"url_archivo": "archivo1", "url_clic": "clic1", "sub_tipo": "native"},
-        "Video2":{"url_archivo": "archivo2", "url_clic": "clic1", "sub_tipo": "instream","duracion":10},
-                     }
+    anuncios_data = [
+        ("Video",{"url_archivo": "archivo1", "url_clic": "clic1", "sub_tipo": "instream","duracion":10}),
+        ("Social",{"ancho":10, "alto":25,"url_archivo": "archivo1", "url_clic": "clic1", "sub_tipo": "linkedin"}),
+        ("Display",{"ancho":10, "alto":25,"url_archivo": "archivo1", "url_clic": "clic1", "sub_tipo": "native"}),
+        ("Video",{"url_archivo": "archivo2", "url_clic": "clic1", "sub_tipo": "instream","duracion":10}),
+    ]
 
 
-campania = Campania("Campaia1","2023-01-01","2023-02-01", anuncios_data)
-print(campania)
+    campania = Campania("Campaia1","2023-01-01","2023-02-01", anuncios_data)
+    print(campania)
 
