@@ -27,7 +27,11 @@ try:
 
     try:
         nombre_campania = input("Por favor ingrese el nuevo nombre para la campaña\n")
+        print(campania)
+        
         campania.nombre = nombre_campania
+        print(campania)
+        
     except LargoExcedidoError as e:
         escribir_log(e)
         print("El nombre de la campaña excede el largo permitido")
