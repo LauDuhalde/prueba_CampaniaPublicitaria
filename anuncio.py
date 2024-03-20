@@ -91,9 +91,9 @@ class Anuncio(ABC):
             print(valor)
     
     @abstractmethod
-    def comprimir_anuncio():
+    def comprimir_anuncio(self):
         pass
-    def redimensionar_anuncio():
+    def redimensionar_anuncio(self):
         pass
 
 class Video(Anuncio):
@@ -115,10 +115,10 @@ class Video(Anuncio):
         else:
             self.__duracion = 5
     
-    def comprimir_anuncio():
+    def comprimir_anuncio(self):
         print("COMPRESIÓN DE VIDEO NO IMPLEMENTADA AÚN")
         
-    def redimensionar_anuncio():
+    def redimensionar_anuncio(self):
         print("RECORTE DE VIDEO NO IMPLEMENTADO AÚN")
         
         
@@ -140,10 +140,10 @@ class Social(Anuncio):
     def __init__(self, ancho: int, alto: int, url_archivo: str, url_clic: str, sub_tipo: str) -> None:
         super().__init__(ancho, alto, url_archivo, url_clic, sub_tipo)
     
-    def comprimir_anuncio():
+    def comprimir_anuncio(self):
         print("COMPRESIÓN DE ANUNCIOS DE REDES SOCIALES NO IMPLEMENTADA AÚN")
         
-    def redimensionar_anuncio():
+    def redimensionar_anuncio(self):
         print("REDIMENSIONAMIENTO DE ANUNCIOS DE REDES SOCIALES NO IMPLEMENTADO AÚN")
     
 
@@ -153,6 +153,8 @@ if __name__ == "__main__":
     v = Video("txt","url2","instream",0)
     v.sub_tipo="outstream"
     print("NUEVO SUB TIPO:",v.sub_tipo)
+    
+    v.redimensionar_anuncio()
     
     v.sub_tipo="facebook"
             

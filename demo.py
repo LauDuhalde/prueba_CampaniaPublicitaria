@@ -42,6 +42,8 @@ try:
         print(f"Formato de anuncio: {campania.anuncios[0].FORMATO}")
         sub_tipo = input("Por favor ingrese el nuevo nombre para la campaña\n")
         campania.anuncios[0].sub_tipo=sub_tipo
+        
+        #campania.anuncios[0].redimensionar_anuncio()
     except SubTipoInvalidoError as e:
         escribir_log(e)
         print("El subtipo ingresado no coincide con el formato")
