@@ -128,10 +128,10 @@ class Display(Anuncio):
     def __init__(self, ancho: int, alto: int, url_archivo: str, url_clic: str, sub_tipo: str) -> None:
         super().__init__(ancho, alto, url_archivo, url_clic, sub_tipo)
     
-    def comprimir_anuncio():
+    def comprimir_anuncio(self):
         print("COMPRESIÓN DE ANUNCIOS DISPLAY NO IMPLEMENTADA AÚN")
         
-    def redimensionar_anuncio():
+    def redimensionar_anuncio(self):
         print("REDIMENSIONAMIENTO DE ANUNCIOS DISPLAY NO IMPLEMENTADO AÚN")
         
 class Social(Anuncio):
